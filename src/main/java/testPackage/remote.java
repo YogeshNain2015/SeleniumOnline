@@ -41,40 +41,37 @@ public class remote {
         System.out.println(driver.getSessionId());
 
         try {
+		
+		driver.manage().window().maximize(); 
+		  driver.get("http://34.201.99.203:30001/");
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath("//header/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]")).click();
+		  System.out.println("Clicked on Add new Employee");
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath("//input[@name='name']")).click();
+		  driver.findElement(By.xpath("//input[@name='name']")).sendKeys("Yogesh Nain");
+		  System.out.println("Added name");
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath("//textarea[@name='address']")).click();
+		  driver.findElement(By.xpath("//textarea[@name='address']")).sendKeys("97 Devilal Colony TCP 2 Hisar Cantt Hisar Haryana 125006");
+		  System.out.println("Added Address");
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath("//input[@name='salary']")).click();
+		  driver.findElement(By.xpath("//input[@name='salary']")).sendKeys("15000");
+		  System.out.println("Entered Salary");
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath("//input[@type='submit']")).click();
+		  System.out.println("Record Added");
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath("//a[@href='read.php?id=4']")).click();
+		  System.out.println("View Record of Sandeep");
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath("//a[contains(text(), 'Back')]"));
+		  System.out.println("Back To HomePage");
+		  Thread.sleep(4000);
+		  
 
-            // load the page url
-            System.out.println("Loading Url");
-            driver.get("http://crossbrowsertesting.github.io/login-form.html");
-            
-            // maximize the window - DESKTOPS ONLY
-            //System.out.println("Maximizing window");
-            //driver.manage().window().maximize();
-            
-            // complete a short login form
-            // first by entering the username
-            System.out.println("Entering username");
-            driver.findElementByName("username").sendKeys("tester@crossbrowsertesting.com");
-            
-            // then by entering the password
-            System.out.println("Entering password");
-            driver.findElementByName("password").sendKeys("test123");
-            
-            // then by clicking the login button
-            System.out.println("Logging in");
-            driver.findElementByCssSelector("div.form-actions > button").click();
-            
-            // let's wait here to ensure the page has loaded completely
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"logged-in-message\"]/h2")));
-            
-            // Let's assert that the welcome message is present on the page. 
-            // if not, an exception will be raised and we'll set the score to fail in the catch block.
-            String welcomeMessage = driver.findElementByXPath("//*[@id=\"logged-in-message\"]/h2").getText();
-            Assert.assertEquals("Welcome tester@crossbrowsertesting.com", welcomeMessage);
-            
-            // if we get to this point, then all the assertions have passed
-            // that means that we can set the score to pass in our system
-            myTest.testScore = "pass"; 
+           
         }
         catch(AssertionError ae) {
 
